@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="evnspc.cskh.vn.cskh"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+        Google Maps Android API v2, but are recommended.
+   -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <!-- Permission to start Alarm on device reboot -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+
+
+    <!--
+
+        <meta-data
+           android:name="com.google.android.gms.version"
+           android:value="@integer/google_play_services_version" />
+       <meta-data
+           android:name="com.google.android.maps.v2.API_KEY"
+           android:value="@string/google_maps_key" />
+        -->
+
+
+    <application
+        android:name="evnspc.cskh.vn.cskh.app.AppController"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_dangnhap"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <receiver android:name="evnspc.cskh.vn.cskh.broadcast.BroadcastManager" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <!-- Will not be called unless the application explicitly enables it -->
+        <receiver android:name="evnspc.cskh.vn.cskh.broadcast.DeviceBootReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="evnspc.cskh.vn.cskh.broadcast.AlarmReceiver">
+        </receiver>
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/nLiveoDrawer">
+        </activity>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/nLiveoDrawer">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_dangky">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.MainActivity">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_nhapchiso">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_about">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_baohong">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_giaithich">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_lichcatdien">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_phanhoi">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_phanhoi_gui">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_thongtin">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.Ac_tieuthu">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.camera.CameraActivity">
+        </activity>
+        <activity
+            android:name="evnspc.cskh.vn.cskh.broadcast.NotificationView"
+            />
+        <activity
+            android:name="evnspc.cskh.vn.cskh.volley.MainActivity"
+            />
+    </application>
+
+</manifest>

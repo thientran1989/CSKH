@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <evnspc.cskh.vn.cskh.camera.CameraPreview
+        android:id="@+id/camera_preview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <view
+                    android:id="@+id/imageview1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    class="evnspc.cskh.vn.cskh.camera.Direction" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+             android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical" 
+            android:background="@color/teal_A400"
+            android:gravity="center|top">
+
+            <LinearLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:gravity="center"
+                android:orientation="vertical" 
+                android:background="@drawable/rounded_cam"
+                android:layout_margin="5dp"
+                android:onClick="onCaptureClick">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_camera"
+                     />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

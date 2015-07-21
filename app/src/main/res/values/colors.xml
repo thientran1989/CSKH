@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="actionbar_xanh">#3F51B5</color>
+    <color name="actionbar">#FF5722</color>
+    <color name="body_background_1">#EFEBE9</color>
+    <color name="body_background">#FF5722</color>
+    <color name="body_background_green">#82e783</color>
+    <color name="server_status_bar">#2b2b2b</color>
+    <color name="title_gray">#434343</color>
+    <color name="white">#ffffff</color>
+    <color name="bg_msg_you">#5eb964</color>
+    <color name="bg_msg_from">#e5e7eb</color>
+    <color name="msg_border_color">#a1a1a1</color>
+    <color name="bg_btn_join">#1e6258</color>
+    <color name="bg_msg_input">#e8e8e8</color>
+    <color name="text_label">#424242</color>
+    <color name="text_black">#000000</color>
+    <color name="phim_background">#1DE9B6</color>
+    <color name="phim_text">#004D40</color>
+    <color name="lblFromName">#777777</color>
+    
+     <!-- test color -->
+     <!-- App colors -->
+    <color name="lollipop_theme_default_primary">#3F51B5</color>
+    <color name="lollipop_theme_default_primary_dark">#303F9F</color>
+    <color name="lollipop_theme_default_accent">#C5CAE9</color>
+    <color name="fab_color">#FF4081</color>
+    
+    <!-- materials -->
+    <!-- custom -->
+     <color name="color_list_row">#ECEFF1</color>
+     <color name="color_text">#004D40</color>
+     <color name="color_text_big_title">#004D40</color>
+     <color name="color_big_title">#00BFA5</color>
+     
+    <color name="xanh_nhat">#3F51B5</color>
+    <color name="xanh_dam">#303F9F</color>
+    <color name="xanh_sang_500">#03A9F4</color>
+    <color name="xanh_sang_700">#0091EA</color>
+    
+    <!--
+    <color name="xanh_sang_500">#03A9F4</color> 
+     -->
+    
+    <!-- indigo -->
+    <color name="indigo_500">#3F51B5</color>
+    <color name="indigo_700">#303F9F</color>
+    
+    <color name="xanh_50">#E3F2FD</color>
+    <color name="xanh_100">#BBDEFB</color>
+    <color name="xanh_500">#2196F3</color>
+    <color name="xam_nhat">#C5CAE9</color>
+    
+    <color name="xam_50">#ECEFF1</color>
+    <color name="xam_100">#CFD8DC</color>
+    <color name="xam_200">#EEEEEE</color>
+    <color name="xam_300">#E0E0E0</color>
+    <color name="xam_400">#BDBDBD</color>
+    <color name="xam_500">#607D8B</color>
+    
+    <color name="hong_nhat">#FF80AB</color>
+    <color name="hong_100">#F8BBD0</color>
+    <color name="hong_200">#F48FB1</color>
+    <color name="hong_dam">#F50057</color>
+    
+    <color name="cyan">#00BCD4</color>
+    <color name="cyan_100">#B2EBF2</color>
+    
+    <color name="teal">#009688</color>
+    <color name="teal_100">#B2DFDB</color>
+    <color name="teal_300">#4DB6AC</color>
+    <color name="teal_700">#00796B</color>
+    <color name="teal_900">#004D40</color>
+    <color name="teal_A400">#1DE9B6</color>
+    <color name="teal_A700">#00BFA5</color>
+    
+    <color name="cam_500">#FF9800</color>
+    <color name="cam_300">#FFB74D</color>
+    <color name="cam_100">#FFE0B2</color>
+    <color name="cam_50">#FFF3E0</color>
+    <color name="cam_dam">#FF5722</color>
+    
+    <color name="vang_500">#FFEB3D</color>
+    <color name="vang_100">#FFF9C4</color>
+    <color name="vang_50">#FFFDE7</color>
+    
+    <color name="do_500">#F44336</color>
+    <color name="do_50">#FFEBEE</color>
+    <color name="do_100">#FFCDD2</color>
+    <color name="do_200">#EF9A9A</color>
+    
+    <color name="tim_500">#9C27B0</color>
+    <color name="tim_100">#E1BEE7</color>
+    <color name="tim_50">#F3E5F5</color>
+    
+    <color name="green_500">#4CAF50</color>
+    <color name="green_400">#00E676</color>
+    
+    <color name="blue_grey">#607D8B</color>
+    <!-- materials -->
+    <color name="material_indigo_500">#3F51B5</color>
+    <color name="material_indigo_600">#3949AB</color>
+    <color name="material_pink_500">#E91E63</color>
+    <color name="material_red_400">#EF5350</color>
+
+    <color name="orange">#FF9900</color>
+    <color name="green">#009900</color>
+    <color name="blue">#000099</color>
+
+    <color name="fab">#E91E63</color>
+    <color name="fab_pressed">#C2185B</color>
+
+    <color name="feed_bg">#d3d6db</color>
+    <color name="feed_item_bg">#ffffff</color>
+    <color name="feed_item_border">#c2c3c8</color>
+    <color name="link">#0a80d1</color>
+    <color name="timestamp">#a0a3a7</color>
+
+
+</resources>

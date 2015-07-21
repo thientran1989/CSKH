@@ -1,0 +1,63 @@
+
+
+<android.support.v7.widget.CardView
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/card_view"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+card_view:cardCornerRadius="2dp"
+android:layout_margin="5dp">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/actionbar"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_thang_row_tieuthu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="contact det"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_sanluong_row_tieuthu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:padding="2dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/nliveo_black"/>
+    <TextView
+        android:id="@+id/tv_sotien_row_tieuthu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Surname"
+        android:textColor="@color/nliveo_black"
+        android:padding="2dp"/>
+    <TextView
+        android:id="@+id/tv_gtgt_row_tieuthu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Surname"
+        android:textColor="@color/nliveo_black"
+        android:padding="2dp"/>
+    <TextView
+        android:id="@+id/tv_tongtien_row_tieuthu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:padding="2dp"
+        android:textColor="@color/nliveo_black"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>

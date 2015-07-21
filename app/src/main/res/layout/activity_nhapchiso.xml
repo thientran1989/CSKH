@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.07"
+        android:background="@color/actionbar"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_title_nhapchiso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_weight="0.9"
+            android:paddingLeft="@dimen/padding_title"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textStyle="bold" 
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:src="@drawable/ic_menu" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.93" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/iv_chupchiso_nhapchiso"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/nophoto" 
+                    android:onClick="call_camera"/>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edt_chiso_nhapchiso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:lines="1"
+                android:textSize="@dimen/phim_text_size"
+                android:textStyle="bold"
+                android:maxLength="10"
+                android:focusable="false"
+                android:paddingLeft="15dp" >
+
+                <requestFocus />
+            </EditText>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.25" >
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="1"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="2"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="3"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.25" >
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="4"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="5"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="6"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.25" >
+
+                    <Button
+                        android:id="@+id/button8"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="7"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="8"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="9"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.25" >
+
+                    <Button
+                        android:id="@+id/button10"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="."
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/button11"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:onClick="nhap_chi_so"
+                        android:text="0"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.33"
+                        android:background="@color/phim_background"
+                        android:text="Xoá"
+                        android:textColor="@color/phim_text"
+                        android:textSize="@dimen/phim_text_size"
+                        android:textStyle="bold"
+                        android:onClick="xoa_chi_so" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- author info -->
+
+</LinearLayout>
