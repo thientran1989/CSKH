@@ -23,6 +23,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import evnspc.cskh.vn.cskh.Ac_dangky;
+import evnspc.cskh.vn.cskh.Ac_dangnhap;
 import evnspc.cskh.vn.cskh.R;
 import evnspc.cskh.vn.cskh.activity.MainActivity;
 import evnspc.cskh.vn.cskh.adapter.Adapter_HDON;
@@ -31,6 +33,7 @@ import evnspc.cskh.vn.cskh.database.DBAdapter;
 import evnspc.cskh.vn.cskh.object.CallbackResult;
 import evnspc.cskh.vn.cskh.object.Obj_hdonctiet;
 import evnspc.cskh.vn.cskh.object.Obj_hoadon;
+import evnspc.cskh.vn.cskh.object.Obj_khachhang;
 import evnspc.cskh.vn.cskh.object.Obj_sanluong;
 import evnspc.cskh.vn.cskh.object.ObjectClient;
 import evnspc.cskh.vn.cskh.utils.CONFIG_LINK;
@@ -73,6 +76,13 @@ public class Conect_server_sign_async extends AsyncTask<String, String, String> 
         this.recList = recList;
         this.mAdapter_sanluong = mAdapter;
     }
+    // dang nhap
+    public Conect_server_sign_async(Context mCon,String my_url,ObjectClient mOC,View prov){
+        this.mCon = mCon;
+        this.my_url = my_url;
+        this.mOC =mOC;
+        this.prov = prov;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -102,7 +112,6 @@ public class Conect_server_sign_async extends AsyncTask<String, String, String> 
 
     }
     protected void onPostExecute(String result) {
-//            pDialog.dismiss();
         mcountdown.cancel();
         ((Activity)mCon).runOnUiThread(new Runnable() {
             public void run() {
@@ -112,9 +121,23 @@ public class Conect_server_sign_async extends AsyncTask<String, String, String> 
                             prov.setVisibility(View.GONE);
                         }
                         if(mCB.getCommand().equals(DB_COMMAND.LENH_GETHDON)){
+                            Obj_khachhang oKH =null;
+                            try{
+                                oKH = mOC.getoKH();
+                                oKH.setLAST_ID_HDON(mCB.getList_HD().get(0).ID_HDON);
+                            }catch(Exception e){
+
+                            }
+                            if(oKH!=null){
+                                mdb.update_khachhang(mOC.getoKH());
+                            }
                             load_hoadon_ok(mCB);
                         }else  if(mCB.getCommand().equals(DB_COMMAND.LENH_GETSANLUONG)){
                             load_sanluong_ok(mCB);
+                        }else  if(mCB.getCommand().equals(DB_COMMAND.LENH_DANGNHAP)){
+                            ((Ac_dangnhap)mCon).dangnhap_ok(mCB);
+                        }else  if(mCB.getCommand().equals(DB_COMMAND.LENH_DANGKY)){
+                            ((Ac_dangky)mCon).dangky_ok(mCB);
                         }else  if(mCB.getCommand().equals(DB_COMMAND.LENH_CHECKNEW)){
                             try{
 //                                check_new_ok(mCB);
@@ -218,6 +241,7 @@ public class Conect_server_sign_async extends AsyncTask<String, String, String> 
                     if (my_HD != null) {
                         if (mdb != null) {
                             for (Obj_hoadon OHD : my_HD) {
+                                mdb.delete_hoadon(OHD);
                                 mdb.insert_hoadon(OHD);
                             }
                         } else {
@@ -261,6 +285,7 @@ public class Conect_server_sign_async extends AsyncTask<String, String, String> 
         mAdapter_sanluong = new Adapter_SANLUONG(mCon,list);
         recList.setAdapter(mAdapter_sanluong);
     }
+
 
 
 }

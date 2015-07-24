@@ -37,6 +37,7 @@ import java.util.Calendar;
 import evnspc.cskh.vn.cskh.activity.*;
 import evnspc.cskh.vn.cskh.broadcast.AlarmReceiver;
 import evnspc.cskh.vn.cskh.broadcast.BroadcastManager;
+import evnspc.cskh.vn.cskh.broadcast.Conect_server_sign_async;
 import evnspc.cskh.vn.cskh.database.DBAdapter;
 import evnspc.cskh.vn.cskh.object.CallbackResult;
 import evnspc.cskh.vn.cskh.object.Obj_khachhang;
@@ -53,8 +54,6 @@ public class Ac_dangnhap extends Activity {
 	DBAdapter mdb;
 	ProgressWheel prov;
 	Button btn_dangnhap;
-    CountDownTimer mcountdown;
-    CallbackResult mCB=null;
     String my_url="";
     private PendingIntent pendingIntent;
     ObjectClient mOC = null;
@@ -101,7 +100,13 @@ public class Ac_dangnhap extends Activity {
 	public void to_intent_main(View v) {
 		if (Tht_Network.isNetworkAvailable(this)) {
             my_url = CONFIG_LINK.mURL_server;
-            new Conect_server_sign_async().execute();
+            mOC = new ObjectClient();
+            mOC.setCommand(DB_COMMAND.LENH_DANGNHAP);
+            Obj_khachhang oKH = new Obj_khachhang();
+            oKH.setMA_KHANG(edt_MA_KH.getText().toString());
+            oKH.setPASSWORD(edt_MATKHAU.getText().toString());
+            mOC.setoKH(oKH);
+            new Conect_server_sign_async(Ac_dangnhap.this,my_url,mOC,prov).execute();
 		} else {
 			ThtShow.show_toast(this, "Mạng không khả dụng !");
 		}
@@ -112,132 +117,29 @@ public class Ac_dangnhap extends Activity {
 		Intent i = new Intent(Ac_dangnhap.this, Ac_dangky.class);
 		startActivityForResult(i, REQ_CODE.REQ_DANGKY);
 	}
-    // gui du lieu
-    class Conect_server_sign_async extends AsyncTask<String, String, String> {
-        String KQSV = "Không kết nối được server";
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            prov.setVisibility(View.VISIBLE);
-
-            mcountdown = new CountDownTimer(CONFIG_LINK.READ_TIMEOUT, 1000) {
-                public void onTick(long millisUntilFinished) {
-//                    pDialog.setMessage(" Đang kiểm tra...");
+    // dang nhap ok
+    public void dangnhap_ok(CallbackResult mCB){
+        if(mCB!=null){
+            if(mCB.getResultString().equals("OK")){
+                try {
+                    Obj_khachhang oKH = mCB.getoKH();
+                    oKH.setPASSWORD(edt_MATKHAU.getText().toString());
+                    Toast.makeText(getApplicationContext(),mCB.getDiengiai1(),Toast.LENGTH_LONG).show();
+                    DBAdapter.Insert_khachhang(oKH);
+                    Intent i = new Intent(this, evnspc.cskh.vn.cskh.activity.MainActivity.class);
+                    i.putExtra("KH",oKH);
+                    i.putExtra("lenh", "login");
+                    startActivity(i);
+                    finish();
+                }catch(Exception e){
+                    Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
                 }
-                public void onFinish() {
-                    prov.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(), "time out", Toast.LENGTH_LONG).show();
-                }
-            }.start();
-        }
-
-        protected String doInBackground(String... kq) {
-            try {
-                mOC = new ObjectClient();
-                mOC.setCommand(DB_COMMAND.LENH_DANGNHAP);
-                Obj_khachhang oKH = new Obj_khachhang();
-                oKH.setMA_KHANG(edt_MA_KH.getText().toString());
-                oKH.setPASSWORD(edt_MATKHAU.getText().toString());
-                mOC.setoKH(oKH);
-                upload(my_url,mOC);
-            } catch (Exception e) {
+            }else{
+                Toast.makeText(getApplicationContext(),mCB.getResultString(),Toast.LENGTH_LONG).show();
             }
-
-            return null;
-
+        }else{
+            Toast.makeText(getApplicationContext(),KQSV,Toast.LENGTH_LONG).show();
         }
-
-        protected void onPostExecute(String result) {
-            prov.setVisibility(View.GONE);
-            mcountdown.cancel();
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    if(mCB!=null){
-                        if(mCB.getResultString().equals("OK")){
-                            try {
-                                Obj_khachhang oKH = mCB.getoKH();
-                                oKH.setPASSWORD(edt_MATKHAU.getText().toString());
-                                Toast.makeText(getApplicationContext(),mCB.getDiengiai1(),Toast.LENGTH_LONG).show();
-                                DBAdapter.Insert_khachhang(oKH);
-                                Intent i = new Intent(Ac_dangnhap.this, evnspc.cskh.vn.cskh.activity.MainActivity.class);
-                                i.putExtra("KH",mOC.getoKH());
-                                i.putExtra("lenh","login");
-                                startActivity(i);
-                                finish();
-                            }catch(Exception e){
-                                Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
-                            }
-                        }else{
-                            Toast.makeText(getApplicationContext(),mCB.getResultString(),Toast.LENGTH_LONG).show();
-                        }
-                    }else{
-                        Toast.makeText(getApplicationContext(),KQSV,Toast.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-        }
-
-        public void upload(String mURL,ObjectClient mOC) {
-            KQSV = getString(R.string.alert_not_connect_server);
-            HttpURLConnection connection = null;
-            DataOutputStream outputStream = null;
-            DataInputStream dis = null;
-            try {
-                URL url = new URL(mURL);
-                URLConnection urlConn = url.openConnection();
-                urlConn.setConnectTimeout(CONFIG_LINK.CONNECT_TIMEOUT);
-                urlConn.setReadTimeout(CONFIG_LINK.READ_TIMEOUT);
-                connection = (HttpURLConnection) urlConn;
-                connection.setChunkedStreamingMode(0);
-                connection.setRequestMethod("POST");
-                connection.setRequestProperty("Content-Type",
-                        "application/octet-stream");
-                connection.setRequestProperty("Connection", "Keep-Alive");
-                connection.setAllowUserInteraction(true);
-                connection.setUseCaches(false);
-                connection.setDoInput(true);
-                connection.setDoOutput(true);
-
-                outputStream = new DataOutputStream(
-                        connection.getOutputStream());
-
-                KQSV = Function.alldata2server(mOC, null);
-                Function.write_String_to_byte(outputStream, KQSV);
-                outputStream.flush();
-                dis = new DataInputStream(connection.getInputStream());
-                KQSV = "";
-                KQSV = Function.byte_to_String(dis);
-                Log.i("KQSV", KQSV);
-                outputStream.close();
-                dis.close();
-                JsonParser jp = new JsonParser();
-                JsonObject mJO = jp.parse(KQSV).getAsJsonObject();
-//                TAG_KQ="mJO :"+mJO.toString();
-                mCB = M_READ_JSON.read_callback(mJO);
-                if (mCB != null) {
-                    try {
-                        KQSV = mCB.getResultString();
-                    } catch (Exception e) {
-                        KQSV = "loi doc callback :"+e.toString();
-                    }
-                } else {
-                    KQSV = "ko doc dc JSON";
-                }
-            } catch (Exception ex) {
-                if(my_url.equals(CONFIG_LINK.mURL)){
-                    KQSV = getString(R.string.alert_not_connect_server);
-                }else{
-                    my_url = CONFIG_LINK.mURL;
-                    upload(my_url,mOC);
-                }
-
-            }
-
-        }
-
-
     }
 
     @Override
@@ -302,4 +204,5 @@ public class Ac_dangnhap extends Activity {
         }
 
     }
+
 }

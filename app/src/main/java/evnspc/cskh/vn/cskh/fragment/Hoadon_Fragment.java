@@ -103,6 +103,7 @@ public class Hoadon_Fragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub		
 		View rootView = inflater.inflate(R.layout.activity_tieuthu, container, false);
+        getActivity().setTitle("Hoa don");
         mdb = new DBAdapter(getActivity());
         mdb.open();
         try {
@@ -249,26 +250,4 @@ public class Hoadon_Fragment extends Fragment {
                 .getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
-    public void load_data_ok(CallbackResult mCB){
-        if(mCB!=null) {
-            if (mCB.getResultString().equals("OK")) {
-                List<Obj_hoadon> my_HD = new ArrayList<Obj_hoadon>();
-                try {
-                    my_HD = mCB.getList_HD();
-                    if (my_HD != null) {
-                        if (mdb != null) {
-                            for (Obj_hoadon OHD : my_HD) {
-                                mdb.insert_hoadon(OHD);
-                            }
-                        } else {
-                            Toast.makeText(getActivity().getApplicationContext(), "mdb null", Toast.LENGTH_LONG).show();
-                        }
-                        set_list(my_HD);
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(getActivity().getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-                }
-            }
-        }}
-
 }

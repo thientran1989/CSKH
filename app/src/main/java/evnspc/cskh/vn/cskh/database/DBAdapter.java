@@ -101,6 +101,10 @@ public class DBAdapter {
             initVal.put(kHang.tag_DTHOAI, kHang.getDTHOAI());
             initVal.put(kHang.tag_EMAIL, kHang.getEMAIL());
             initVal.put(kHang.tag_PASSWORD, kHang.getPASSWORD());
+            initVal.put(kHang.tag_LAST_ID_CHISO, kHang.getLAST_ID_CHISO());
+            initVal.put(kHang.tag_LAST_ID_HDON, kHang.getLAST_ID_HDON());
+            initVal.put(kHang.tag_DXEM_CHISO, kHang.getDXEM_CHISO());
+            initVal.put(kHang.tag_DXEM_HDON, kHang.getDXEM_HDON());
             mDB.insert(kHang.tag_TABLE_KHANG, null, initVal);
             mDB.setTransactionSuccessful();
         }catch (Exception e){
@@ -133,11 +137,53 @@ public class DBAdapter {
         }
 
     }
+    public String delete_hoadon(Obj_hoadon oHD) {
+        String kq ="start";
+        mDB.beginTransaction();
+        try {
+            mDB.delete(oHD.tag_TABLE_HDON, oHD.tag_ID_HDON+"=?",
+                    new String[] { String.valueOf(oHD.ID_HDON) });
+            kq ="Xoa HD thanh cong !";
+            mDB.setTransactionSuccessful();
+        }catch (Exception e){
+            kq = e.toString();
+        }finally {
+            mDB.endTransaction();
+        }
+        return  kq;
+    }
+	public void update_khachhang(Obj_khachhang kHang) {
+        mDB.beginTransaction();
+        try {
+            ContentValues initVal = new ContentValues();
+            initVal.put(kHang.tag_MA_DVIQLY, kHang.getMA_DVIQLY());
+            initVal.put(kHang.tag_MA_KHANG, kHang.getMA_KHANG());
+            initVal.put(kHang.tag_SO_NHA, kHang.getSO_NHA());
+            initVal.put(kHang.tag_DUONG_PHO, kHang.getDUONG_PHO());
+            initVal.put(kHang.tag_DCHI_HDON, kHang.getDCHI_HDON());
+            initVal.put(kHang.tag_TEN_KHANG, kHang.getTEN_KHANG());
+            initVal.put(kHang.tag_DTHOAI, kHang.getDTHOAI());
+            initVal.put(kHang.tag_EMAIL, kHang.getEMAIL());
+            initVal.put(kHang.tag_PASSWORD, kHang.getPASSWORD());
+            initVal.put(kHang.tag_LAST_ID_CHISO, kHang.getLAST_ID_CHISO());
+            initVal.put(kHang.tag_LAST_ID_HDON, kHang.getLAST_ID_HDON());
+            initVal.put(kHang.tag_DXEM_CHISO, kHang.getDXEM_CHISO());
+            initVal.put(kHang.tag_DXEM_HDON, kHang.getDXEM_HDON());
+            mDB.update(kHang.tag_TABLE_KHANG, initVal, null, null);
+
+            mDB.setTransactionSuccessful();
+        } catch (Exception e) {
+
+        } finally {
+            mDB.endTransaction();
+        }
+    }
     public String xoa_khachhang() {
         String kq ="start";
         mDB.beginTransaction();
         try {
             mDB.delete(Obj_khachhang.tag_TABLE_KHANG,null,null);
+			mDB.delete(Obj_hoadon.tag_TABLE_HDON,null,null);
             kq ="Đăng xuất thành công !";
             mDB.setTransactionSuccessful();
         }catch (Exception e){
@@ -363,6 +409,8 @@ public class DBAdapter {
 	}
 	public Obj_khachhang get_khachhang() {
 		Obj_khachhang kH = null;
+		mDB.beginTransaction();
+		try {
 		if (get_soluong_khachhang()>0){
 			try {
 				Cursor c = null;
@@ -371,9 +419,15 @@ public class DBAdapter {
 				kH = new Obj_khachhang();
 				kH.set_obj(c);
 				c.close();
+				mDB.setTransactionSuccessful();
 			} catch (Exception e) {
 				
 			}
+		}
+		} catch (Exception e) {
+
+		} finally {
+			mDB.endTransaction();
 		}
 		return kH;
 	}
@@ -578,7 +632,17 @@ public class DBAdapter {
 	 * so luong
 	 */
 	public int get_soluong_khachhang() {
-		return ThtDatabase.get_so_luong(mDB, Obj_khachhang.tag_TABLE_KHANG);
+		int SL =0;
+		mDB.beginTransaction();
+		try {
+			SL= ThtDatabase.get_so_luong(mDB, Obj_khachhang.tag_TABLE_KHANG);
+			mDB.setTransactionSuccessful();
+		} catch (Exception e) {
+
+		} finally {
+			mDB.endTransaction();
+		}
+		return SL;
 	}
 	public int get_soluong_lichcatdien() {
 		return ThtDatabase.get_so_luong(mDB, Utils.table_lichcatdien);
